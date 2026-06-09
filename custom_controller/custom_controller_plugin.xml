@@ -1,0 +1,7 @@
+<library path="custom_controller">
+  <class name="custom_controller/CustomController" type="custom_controller::CustomController" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    Template for writing Custom Controllers in ros2_control
+  </description>
+  </class>
+</library>

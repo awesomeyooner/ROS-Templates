@@ -1,0 +1,28 @@
+custom_controller:
+  my_string_param: {
+    type: string,
+    default_value: "Hello World!",
+    description: "Example of string param"
+  }
+  my_string_array_param: {
+    type: string_array,
+    default_value: [],
+    description: "Example of string array param",
+    validation: {
+      not_empty<>: []
+    }
+  }
+  my_double_param: {
+    type: double,
+    default_value: 0.0,
+    description: "Example of double param",
+  }
+  my_double_array_param: {
+    type: double_array,
+    default_value: [],
+    description: "Example of double array param",
+    validation: {
+      not_empty<>: []
+    }
+  }
+  
