@@ -1,0 +1,5 @@
+# Ignore the /build folder for CMake
+**/build/
+
+build/
+
