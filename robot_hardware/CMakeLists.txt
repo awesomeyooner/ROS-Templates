@@ -8,7 +8,8 @@ endif()
 # In order to compile external libs
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-add_subdirectory(hardware/lib/CommiFaceLib)
+# Add libraries!
+add_subdirectory(hardware/lib/MyLib)
 
 # Dependency list
 set(THIS_PACKAGE_INCLUDE_DEPENDS
@@ -33,7 +34,7 @@ ament_target_dependencies(${PROJECT_NAME} PUBLIC
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    CommiFaceLib
+    # Add your libraries!
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)

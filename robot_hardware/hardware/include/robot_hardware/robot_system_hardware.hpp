@@ -19,12 +19,11 @@
 
 #include "robot_hardware/visibility_control.h"
 
-#include "CommiFaceLib/protocols/serial.hpp"
 
+namespace robot_hardware
+{    
 
-namespace robot_hardware{
     
-
 class RobotSystemHardware : public hardware_interface::SystemInterface
 {
 
@@ -55,10 +54,7 @@ class RobotSystemHardware : public hardware_interface::SystemInterface
 
     private:
 
-        SerialInterface serial_port;
-
-        double drive_commands[4] = {0, 0, 0, 0};
-        double steer_commands[2] = {0, 0};
+        
 
 }; // class RobotSystemHardware
 

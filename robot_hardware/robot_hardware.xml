@@ -3,7 +3,7 @@
          type="robot_hardware::RobotSystemHardware"
          base_class_type="hardware_interface::SystemInterface">
     <description>
-      Polar-One Hardware Interface
+      Template HardwareInterface
     </description>
   </class>
 </library>
