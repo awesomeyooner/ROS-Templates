@@ -23,6 +23,7 @@ def generate_launch_description():
 
     # Declare arguments
     declared_arguments = []
+
     declared_arguments.append(
         DeclareLaunchArgument(
             "My_Param",
@@ -31,8 +32,17 @@ def generate_launch_description():
         )
     )
 
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "params_file",
+            default_value=os.path.join(get_package_share_directory('joystick_driver'),'config','joystick.yaml'),
+            description="The path to the YAML config file."
+        )
+    )
+
     # Initialize Arguments
     my_param = LaunchConfiguration("My_Param")
+    params_file = LaunchConfiguration("params_file")
 
     # YAML Params
     my_params = PathJoinSubstitution(
@@ -53,8 +63,11 @@ def generate_launch_description():
     )
 
     my_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(get_package_share_directory("my_package"), "launch", 
-        "my_launch.launch.py"))
+        PythonLaunchDescriptionSource(os.path.join(get_package_share_directory("my_package"), "launch", "my_launch.launch.py")),
+        launch_arguments={
+            "my_param": "Hello World!",
+            "params_file": os.path.join(get_package_share_directory('joystick_driver'),'config','joystick.yaml')
+        }.items()
     )
 
     nodes = [

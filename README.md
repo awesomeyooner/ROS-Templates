@@ -5,6 +5,14 @@
 # ROS-Templates
 A bunch of ROS 2 Packages that serve as barebones templates
 
+## Notes
+
+When using VSCode, to make CMake the intellisense provider, use
+
+1. `Ctrl + Shift + P`
+2. `C/C++: Change Configuration Provider`
+3. `CMake Tools`
+
 ## Folder Directory
 
 - `custom_controller` ros2_control based custom controller
