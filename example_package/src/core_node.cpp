@@ -20,6 +20,9 @@ void CoreNode::init()
 {
     info("Initializing...");
 
+    m_param_listener = std::make_shared<ParamListener>(this);
+    m_params = m_param_listener->get_params();
+
     // You can use params with
     // m_params.my_bool
 
