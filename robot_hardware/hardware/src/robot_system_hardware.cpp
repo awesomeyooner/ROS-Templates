@@ -26,9 +26,6 @@ CallbackReturn RobotSystemHardware::on_init(const HardwareComponentInterfacePara
     // Using parameters in the ros2_control.xacro file
     string my_param = info_.hardware_parameters["my_param"];
 
-    if(init_status != StatusCode::OK)
-        return CallbackReturn::ERROR;
-
     return CallbackReturn::SUCCESS;
 
 } // end of "on_init(const HardwareComponentInterfaceParams&)"
@@ -40,6 +37,10 @@ vector<StateInterface> RobotSystemHardware::export_state_interfaces()
 
     // Code here...
 
+    // Example
+    state_interfaces.emplace_back(StateInterface("front_left_wheel_joint", HW_IF_POSITION, &my_position_var));
+    state_interfaces.emplace_back(StateInterface("front_left_wheel_joint", HW_IF_VELOCITY, &my_velocity_var));
+
     return state_interfaces;
 
 } // end of "export_state_interfaces()"
@@ -50,6 +51,9 @@ vector<CommandInterface> RobotSystemHardware::export_command_interfaces()
     vector<CommandInterface> command_interfaces;
 
     // Code here...
+
+    // Example
+    command_interfaces.emplace_back(CommandInterface("front_left_wheel_joint", HW_IF_VELOCITY, &my_velocity_command));
 
     return command_interfaces;
 
