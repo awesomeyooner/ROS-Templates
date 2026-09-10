@@ -8,6 +8,11 @@ endif()
 # In order to compile external libs
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# All .cpp files to compile
+set( SRC_FILES
+    # hardware/src/my_file.cpp
+)
+
 # Add libraries!
 add_subdirectory(hardware/lib/MyLib)
 
@@ -27,6 +32,8 @@ endforeach()
 
 add_library( ${PROJECT_NAME} SHARED
   hardware/src/robot_system_hardware.cpp
+
+  ${SRC_FILES}
 )
 
 ament_target_dependencies(${PROJECT_NAME} PUBLIC

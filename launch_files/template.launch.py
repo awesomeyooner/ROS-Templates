@@ -26,6 +26,16 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument(
+            "use_sim_time",
+            default_value="false",
+            description="Whether or not to use sim time. Defaults to false",
+        )
+    )
+
+    use_sim_time = LaunchConfiguration("use_sim_time")
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "My_Param",
             default_value="Hello World",
             description="Example of a launch params",
