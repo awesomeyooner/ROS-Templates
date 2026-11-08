@@ -19,38 +19,30 @@ from launch_ros.substitutions import FindPackageShare
 
 import xacro
 
+
+ARGUMENTS = [
+    DeclareLaunchArgument(
+        "use_sim_time",
+        default_value="false",
+        description="Whether or not to use sim time. Defaults to false",
+    ),
+    DeclareLaunchArgument(
+        "My_Param",
+        default_value="Hello World",
+        description="Example of a launch params",
+    ),
+    DeclareLaunchArgument(
+        "params_file",
+        default_value=os.path.join(get_package_share_directory('joystick_driver'),'config','joystick.yaml'),
+        description="The path to the YAML config file."
+    )
+]
+
+
 def generate_launch_description():
 
-    # Declare arguments
-    declared_arguments = []
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "use_sim_time",
-            default_value="false",
-            description="Whether or not to use sim time. Defaults to false",
-        )
-    )
-
-    use_sim_time = LaunchConfiguration("use_sim_time")
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "My_Param",
-            default_value="Hello World",
-            description="Example of a launch params",
-        )
-    )
-
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "params_file",
-            default_value=os.path.join(get_package_share_directory('joystick_driver'),'config','joystick.yaml'),
-            description="The path to the YAML config file."
-        )
-    )
-
     # Initialize Arguments
+    use_sim_time = LaunchConfiguration("use_sim_time")
     my_param = LaunchConfiguration("My_Param")
     params_file = LaunchConfiguration("params_file")
 
@@ -77,12 +69,18 @@ def generate_launch_description():
         launch_arguments={
             "my_param": "Hello World!",
             "params_file": os.path.join(get_package_share_directory('joystick_driver'),'config','joystick.yaml')
-        }.items()
+        }.items(),
+        condition="true"
     )
+
+    # If you want multiple conditions, use this
+    # condition=IfCondition(
+    #     PythonExpression(["'", bool_param_1, "' == 'false' and '", bool_param_2, "' == 'true'"])
+    # ),
 
     nodes = [
         my_node,
         my_launch
     ]
 
-    return LaunchDescription(declared_arguments + nodes)
+    return LaunchDescription(ARGUMENTS + nodes)

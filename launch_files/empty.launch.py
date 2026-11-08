@@ -19,13 +19,15 @@ from launch_ros.substitutions import FindPackageShare
 
 import xacro
 
+
+ARGUMENTS = [
+    # Add...
+]
+
 def generate_launch_description():
-    
-    # Declare arguments
-    declared_arguments = []
    
     nodes = [
         # Add...
     ]
 
-    return LaunchDescription(declared_arguments + nodes)
+    return LaunchDescription(ARGUMENTS + nodes)
