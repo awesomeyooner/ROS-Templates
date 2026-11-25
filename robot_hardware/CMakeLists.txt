@@ -30,11 +30,16 @@ foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
+# ==============================
+# UNCOMMENT
+# ==============================
+# 
 # add_library( ${PROJECT_NAME} SHARED
 #   hardware/src/robot_system_hardware.cpp
 
 #   ${SRC_FILES}
 # )
+
 
 # ament_target_dependencies(${PROJECT_NAME} PUBLIC
 #   ${THIS_PACKAGE_INCLUDE_DEPENDS}
@@ -53,6 +58,8 @@ endforeach()
 #   $<INSTALL_INTERFACE:lib/${PROJECT_NAME}>
 #   /opt/ros/jazzy/include
 # )
+# 
+# ==============================
 
 # Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface ${PROJECT_NAME}.xml)
@@ -88,6 +95,10 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+# ==============================
+# UNCOMMENT
+# ==============================
+
 # Whole project
 # install(TARGETS ${PROJECT_NAME}
 #   EXPORT export_${PROJECT_NAME}
@@ -95,6 +106,8 @@ install(
 #   LIBRARY DESTINATION lib
 #   RUNTIME DESTINATION bin
 # )
+
+# ==============================
 
 # Export for AMENT
 # ament_export_targets("export_${PROJECT_NAME}" HAS_LIBRARY_TARGET)
