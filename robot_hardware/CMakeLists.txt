@@ -14,7 +14,7 @@ set( SRC_FILES
 )
 
 # Add libraries!
-add_subdirectory(hardware/lib/MyLib)
+# add_subdirectory(hardware/lib/MyLib)
 
 # Dependency list
 set(THIS_PACKAGE_INCLUDE_DEPENDS
@@ -30,29 +30,29 @@ foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
-add_library( ${PROJECT_NAME} SHARED
-  hardware/src/robot_system_hardware.cpp
+# add_library( ${PROJECT_NAME} SHARED
+#   hardware/src/robot_system_hardware.cpp
 
-  ${SRC_FILES}
-)
+#   ${SRC_FILES}
+# )
 
-ament_target_dependencies(${PROJECT_NAME} PUBLIC
-  ${THIS_PACKAGE_INCLUDE_DEPENDS}
-)
+# ament_target_dependencies(${PROJECT_NAME} PUBLIC
+#   ${THIS_PACKAGE_INCLUDE_DEPENDS}
+# )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    # Add your libraries!
-)
+# target_link_libraries(${PROJECT_NAME} PRIVATE
+#     # Add your libraries!
+# )
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+# target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-target_include_directories(${PROJECT_NAME} PUBLIC
-  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
-  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
-  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/lib>
-  $<INSTALL_INTERFACE:lib/${PROJECT_NAME}>
-  /opt/ros/jazzy/include
-)
+# target_include_directories(${PROJECT_NAME} PUBLIC
+#   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
+#   $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
+#   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/lib>
+#   $<INSTALL_INTERFACE:lib/${PROJECT_NAME}>
+#   /opt/ros/jazzy/include
+# )
 
 # Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface ${PROJECT_NAME}.xml)
@@ -84,19 +84,19 @@ install(
 
 # Bringup (yaml configs, launch files)
 install(
-  DIRECTORY bringup/launch bringup/config
+  DIRECTORY bringup/launch bringup/config bringup/worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
 # Whole project
-install(TARGETS ${PROJECT_NAME}
-  EXPORT export_${PROJECT_NAME}
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
+# install(TARGETS ${PROJECT_NAME}
+#   EXPORT export_${PROJECT_NAME}
+#   ARCHIVE DESTINATION lib
+#   LIBRARY DESTINATION lib
+#   RUNTIME DESTINATION bin
+# )
 
 # Export for AMENT
-ament_export_targets("export_${PROJECT_NAME}" HAS_LIBRARY_TARGET)
+# ament_export_targets("export_${PROJECT_NAME}" HAS_LIBRARY_TARGET)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()
